@@ -1,0 +1,5 @@
+- name: Set default minikube driver to none
+  command: minikube config set driver none
+
+- name: Start minikube
+  command: minikube start

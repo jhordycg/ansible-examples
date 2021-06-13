@@ -1,0 +1,11 @@
+- name: Install docker
+  apt:
+    name:
+      - docker.io
+
+- name: Add <user> to docker group
+  user:
+    name: "{{ ansible_facts['env']['SUDO_USER'] }}"
+    append: yes
+    groups:
+      - docker

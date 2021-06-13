@@ -1,0 +1,20 @@
+- import_tasks: kubectl.yml
+- import_tasks: docker.yml
+
+- name: Install conntrack
+  apt:
+    name: conntrack
+
+
+- name: Install minikube
+  apt:
+    deb: https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+  
+- name: Assign privileges on the .ansible directory and set the owner to <user>
+  become: yes
+  file:
+    path: "/home/{{ ansible_facts['env']['SUDO_USER'] }}/.minikube"
+    owner: "{{ ansible_facts['env']['SUDO_USER'] }}"
+    mode: u+wrx
+    recurse: yes
+    state: directory

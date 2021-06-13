@@ -1,0 +1,15 @@
+- name: Download the Google Cloud public signing key
+  get_url:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+
+- name: Add the Kubernetes apt repository and update apt package index
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
+    filename: kubernetes
+    update_cache: yes
+
+- name: Install kubectl
+  apt:
+    name:
+      - kubectl

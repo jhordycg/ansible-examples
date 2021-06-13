@@ -1,0 +1,10 @@
+# Install minikube with "none" driver
+
+- hosts:
+    - 34.238.157.210
+  become: yes
+
+  roles:
+    - minikube
+    - none
+  
